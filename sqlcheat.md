@@ -19,3 +19,25 @@
 `schema nametabla` para ver que hay dentro de la tabla.
 
 `DROP TABLE NAMETABLA` para borrar la tabla entera
+
+``` SQL
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS mensajes;
+
+CREATE TABLE 'usuarios'('id', 'nombre', 'edad');
+
+CREATE TABLE 'mensajes'('id', 'mensajes', 'autor');
+
+INSERT INTO usuarios VALUES(1, 'admin', 33);
+INSERT INTO usuarios VALUES(2, 'user0', 21);
+INSERT INTO usuarios VALUES(3, 'user1', 18);
+INSERT INTO usuarios VALUES(4, 'user2', 32);
+
+
+ --SELECT * FROM usuarios;
+ --SELECT * FROM usuarios WHERE edad >=25; 
+ ```
+
+
+
+
