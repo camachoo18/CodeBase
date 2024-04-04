@@ -1,7 +1,7 @@
 # Primeros comandos usados en SQL
 
--CREATE simple
--SELECT 
+-CREATE table "nombre de la tabla"
+-SELECT * from "nombre de la tabla"
 -INSERT
 -.schema, .tables, .open, .clone
 -DROP TABLE
@@ -37,7 +37,33 @@ INSERT INTO usuarios VALUES(4, 'user2', 32);
  --SELECT * FROM usuarios;
  --SELECT * FROM usuarios WHERE edad >=25; 
  ```
+`SELECT DISTINCT` devuelve los valores distinto de una tabla es decir, ordenar la lista sin repetir(en caso de que repita) por ejemplo SELECT DISTINCT (pais) from usuarios;
+```SQL
+ SELECT DISTINCT (pais) from usuarios;
+```
 
+`SELECT COUNT (*)` para que nos muestre en numero la cantidad de datos que hay.
+```SQL
+SELECT COUNT (*) FROM usuarios;
+SELECT COUNT (pais) FROM usuarios;
+
+```
+`PRAGMA foreign_keys = ON;` esto activa las foreign keys, sin esto no se hace caso a las que creamos
+
+`STRICT`, se utiliza para que se cumpla de manera correcta los valores y tipos que estamos poniendo a los diferentes valores 
+```SQL
+CREATE TABLE 'usuarios'(
+    'id' INTEGER NOT NULL UNIQUE,
+    'nombre' TEXT NOT NULL  UNIQUE,
+    'edad' INTEGER, 
+    'pais' TEXT,
+    'email' TEXT NOT NULL UNIQUE,
+    'balance' REAL NOT NULL,
+    'rol' TEXT NOT NULL,
+    PRIMARY KEY ('id' AUTOINCREMENT)
+    )STRICT;
+
+```
 
 
 
