@@ -21,6 +21,14 @@ CREATE TABLE 'peliculas'(
     PRIMARY KEY ('id' AUTOINCREMENT)
 );
 
+CREATE TABLE peliculasPendientes(
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'user' INTEGER,
+    'movie' INTEGER,
+    FOREIGN KEY ('user') REFERENCES usuarios('id'),
+    FOREIGN KEY ('movie') REFERENCES peliculas('id')
+);
+
 INSERT INTO peliculas (id, titulo, genero, año, director) VALUES (1, 'The Matrix', 'Ciencia Ficción', 1999, 'The Wachowskis');
 INSERT INTO peliculas (id, titulo, genero, año, director) VALUES (2, 'Inception', 'Ciencia Ficción', 2010, 'Christopher Nolan');
 INSERT INTO peliculas (id, titulo, genero, año, director) VALUES (3, 'The Shawshank Redemption', 'Drama', 1994, 'Frank Darabont');
@@ -82,6 +90,22 @@ INSERT INTO usuarios (nombre, peliculafav) VALUES ('Usuario27', 13);
 INSERT INTO usuarios (nombre, peliculafav) VALUES ('Usuario28', 5);
 INSERT INTO usuarios (nombre, peliculafav) VALUES ('Usuario29', 6);
 INSERT INTO usuarios (nombre, peliculafav) VALUES ('Usuario30', 4);
+
+
+
+INSERT INTO peliculasPendientes (user, movie) VALUES
+(1, 2), -- Usuario1 tiene la película "Inception" pendiente
+(3, 4); -- Usuario3 tiene la película "The Godfather" pendiente
+
+
+SELECT usuarios.nombre, peliculas.titulo AS pelicula_pendiente
+FROM usuarios
+JOIN peliculasPendientes ON usuarios.id = peliculasPendientes.user
+JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
+
+
+
+
 
 SELECT usuarios.nombre, peliculas.titulo AS peliculafav
 FROM usuarios
