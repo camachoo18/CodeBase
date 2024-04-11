@@ -1,10 +1,10 @@
 const express = require('express');
-const http = require('http');
-const { join } = require('path');
+const { createServer } = require('node:http');
+const { join } = require('node:path');
 const { Server } = require('socket.io');
 
 const app = express();
-const server = http.createServer(app);
+const server = createServer(app);
 const io = new Server(server);
 
 app.get('/', (req, res) => {
@@ -21,7 +21,6 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+server.listen(3000, () => {
+  console.log('server running at http://localhost:3000');
 });
