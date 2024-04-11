@@ -1,10 +1,10 @@
 const express = require('express');
-const { createServer } = require('node:http');
-const { join } = require('node:path');
+const http = require('http');
+const { join } = require('path');
 const { Server } = require('socket.io');
 
 const app = express();
-const server = createServer(app);
+const server = http.createServer(app);
 const io = new Server(server);
 
 app.get('/', (req, res) => {
@@ -12,11 +12,16 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      io.emit('chat message', msg);
-    });
+  socket.on('drawing', (data) => {
+    io.emit('drawing', data);
   });
 
-server.listen(3000, () => {
-  console.log('server running at http://localhost:3000');
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
