@@ -105,7 +105,7 @@ INSERT INTO peliculasPendientes (user, movie) VALUES
 SELECT usuarios.nombre, peliculas.titulo AS pelicula_pendiente
 FROM usuarios
 JOIN peliculasPendientes ON usuarios.id = peliculasPendientes.user
-JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
+--JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
 
 
 
