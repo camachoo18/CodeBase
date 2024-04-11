@@ -21,6 +21,9 @@
         top: 0;
         left: 0;
       }
+      
+      #brushSizeLabel { margin-right: 0.5rem; }
+      #brushSizeInput { margin-right: 1rem; }
     </style>
   </head>
   <body>
@@ -28,11 +31,18 @@
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
+    
+    
+    <div>
+      <label for="brushSizeInput" id="brushSizeLabel">Tamaño del pincel:</label>
+      <input type="range" id="brushSizeInput" min="1" max="100" value="50"onchange="getRange()">
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
       const socket = io();
+      let pincelSize = 50; // Tamaño inicial del pincel
     
       const form = document.getElementById('form');
       const input = document.getElementById('input');
@@ -57,12 +67,12 @@
       
       socket.on('drawing', (data) => {
         fill(0);
-        ellipse(data.x, data.y, 80, 80);
+        ellipse(data.x, data.y, pincelSize, pincelSize);
       });
       
       function setup() {
         createCanvas(1920, 950);
-        background(255, 0, 0);
+        
         prevMouseX = mouseX;
         prevMouseY = mouseY;
       }
@@ -74,6 +84,12 @@
           prevMouseY = mouseY;
         }
       }
+      
+      
+      function getRange(){
+  const rango = document.querySelector("#range_input").value
+  
+}
     </script>
   </body>
 </html>
