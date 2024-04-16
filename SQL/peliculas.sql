@@ -1,7 +1,7 @@
+PRAGMA foreign_keys = ON;
 DROP TABLE IF EXISTS peliculasPendientes;
 DROP TABLE IF EXISTS peliculas;
 DROP TABLE IF EXISTS usuarios;
-PRAGMA foreign_keys = ON;
 
 
 CREATE TABLE IF NOT EXISTS usuarios(
@@ -104,8 +104,8 @@ INSERT INTO peliculasPendientes (user, movie) VALUES
 
 SELECT usuarios.nombre, peliculas.titulo AS pelicula_pendiente
 FROM usuarios
-JOIN peliculasPendientes ON usuarios.id = peliculasPendientes.user
 JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
+--JOIN peliculasPendientes ON usuarios.id = peliculasPendientes.user
 
 
 
