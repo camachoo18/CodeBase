@@ -100,6 +100,11 @@ INSERT INTO 'usuarios' (nombre, peliculafav) VALUES
 INSERT INTO peliculasPendientes (user, movie) VALUES
 (1, 2), -- Usuario1 tiene la película "Inception" pendiente
 (3, 4); -- Usuario3 tiene la película "The Godfather" pendiente
+(4, 8),
+(5, 9),
+(6, 3),
+(7, 6),
+(8, 5);
 
 
 SELECT usuarios.nombre, peliculas.titulo AS pelicula_pendiente
