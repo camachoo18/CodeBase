@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS usuarios;
 PRAGMA foreign_keys = ON;
 
 
-CREATE TABLE 'usuarios'(
+CREATE TABLE IF NOT EXISTS usuarios(
     'id' INTEGER NOT NULL UNIQUE,
     'nombre' TEXT NOT NULL UNIQUE,
     'peliculafav' INTEGER,
@@ -12,7 +12,7 @@ CREATE TABLE 'usuarios'(
     FOREIGN KEY (peliculafav) REFERENCES peliculas (id)
 );
 
-CREATE TABLE 'peliculas'(
+CREATE TABLE IF NOT EXISTS peliculas(
     'id' INTEGER NOT NULL  ,
     'titulo' TEXT NOT NULL ,
     'genero' TEXT,
@@ -21,7 +21,7 @@ CREATE TABLE 'peliculas'(
     PRIMARY KEY ('id' AUTOINCREMENT)
 );  
 
-CREATE TABLE peliculasPendientes(
+CREATE TABLE IF NOT EXISTS peliculasPendientes(
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,
     'user' INTEGER,
     'movie' INTEGER,
@@ -105,7 +105,7 @@ INSERT INTO peliculasPendientes (user, movie) VALUES
 SELECT usuarios.nombre, peliculas.titulo AS pelicula_pendiente
 FROM usuarios
 JOIN peliculasPendientes ON usuarios.id = peliculasPendientes.user
---JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
+JOIN peliculas ON peliculasPendientes.movie = peliculas.id;
 
 
 
